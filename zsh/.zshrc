@@ -6,6 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 xset r rate 200 40
+setopt IGNORE_EOF
 
 export ZSH="$HOME/.oh-my-zsh"
 
