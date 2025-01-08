@@ -22,6 +22,7 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 alias v=nvim
+alias vi=vim
 alias k=kubectl
 
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
