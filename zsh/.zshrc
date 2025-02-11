@@ -18,12 +18,15 @@ plugins=(
   z
 )
 
+export KUBECONFIG=~/.kubeconfig
 source $ZSH/oh-my-zsh.sh
 
 alias v=nvim
 alias vi=vim
 alias k=kubectl
 
+export PATH=$HOME/.istioctl/bin:$PATH
+export PATH=$PWD/bin:$PATH
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/go
@@ -35,3 +38,4 @@ export NVM_DIR="$HOME/.nvm"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
