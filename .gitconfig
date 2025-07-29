@@ -3,4 +3,4 @@
 	name = tuannm99
 
 [core]
-	editor = vim
+	editor = nvim
