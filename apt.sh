@@ -1,24 +1,27 @@
-#!/bin/bash
-
-# git clone git@github.com:tuannm99/.dotfiles.git ~/.dotfiles
-# cd ~/.dotfiles
-
-sudo add-apt-repository ppa:bamboo-engine/ibus-bamboo
-
 sudo apt update && sudo apt upgrade -y;
 sudo sudo apt install -y \
   ca-certificates \
-  tmux vim neovim \
+  build-essential cmake g++ pkg-config \
+  libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev \
+  tmux vim zsh \
   xclip zip unzip \
   fzf ripgrep jq curl \
-  zsh git htop neofetch \
-  ibus ibus-unikey \
-  kitty build-essential \
-  ibus ibus-bamboo --install-recommends
+  git htop neofetch 
+
+# neovim 0.11
+curl -LO https://github.com/neovim/neovim/releases/download/v0.11.5/nvim-linux-x86_64.tar.gz
+sudo rm -rf /opt/nvim-linux-x86_64
+sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
 
 # Vietnamese
-ibus restart
-env DCONF_PROFILE=ibus dconf write /desktop/ibus/general/preload-engines "['BambooUs', 'Bamboo']" && gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('ibus', 'Bamboo')]"
+#
+# sudo add-apt-repository ppa:bamboo-engine/ibus-bamboo
+# sudo sudo apt install -y \
+#   ibus ibus-unikey \
+#   kitty 
+#   ibus ibus-bamboo --install-recommends
+# ibus restart
+# env DCONF_PROFILE=ibus dconf write /desktop/ibus/general/preload-engines "['BambooUs', 'Bamboo']" && gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('ibus', 'Bamboo')]"
 
 # shell
 chsh -s $(which zsh)
@@ -52,25 +55,29 @@ sudo usermod -aG docker $USER
 newgrp docker
 
 # programing
+# NVM
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash && nvm i 20
+# rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-curl -LO https://go.dev/dl/go1.23.4.linux-amd64.tar.gz && sha256sum go1.23.4.linux-amd64.tar.gz
-sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.23.4.linux-amd64.tar.gz
-export GOPROXY=direct
-export GONOSUMDB="*"
+# GVM + go
+sudo apt-get install bison
+bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+gvm install go1.25.5
+gvm use go1.25.5 --default
 go install github.com/go-delve/delve/cmd/dlv@latest
-go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.62.2
+go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 
-# workflow setup
-mkdir -p ~/.config/kitty
-# mkdir -p ~/.config/i3;
+# devvelopment workflow
+
+mkdir -p ~/.config/i3
+ln -sf ~/.dotfiles/i3/config ~/.config/i3/config
+
+mkdir -p ~/.config/alacritty
+ln -sf ~/.dotfiles/alacritty/alacritty.toml ~/.config/alacritty/alacritty.toml
+
 ln -sf ~/.dotfiles/.gitconfig ~/.gitconfig
 ln -sf ~/.dotfiles/zsh/.zshrc ~/.zshrc
 ln -sf ~/.dotfiles/zsh/.p10k.zsh ~/.p10k.zsh
-# ln -sf ~/.dotfiles/i3/config ~/.config/i3/config
-ln -sf ~/.dotfiles/kitty/diff.conf ~/.config/kitty/diff.conf
-ln -sf ~/.dotfiles/kitty/kitty.conf ~/.config/kitty/kitty.conf
-ln -sf ~/.dotfiles/kitty/dracula.conf ~/.config/kitty/dracula.conf
 ln -sf ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
 ln -sf ~/.dotfiles/nvim ~/.config/nvim
 

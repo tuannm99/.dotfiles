@@ -1,0 +1,12 @@
+[font]
+size = 11.0
+
+normal = { family = "Cascadia Code", style = "Regular" }
+bold = { family = "Cascadia Code", style = "Bold" }
+italic = { family = "Cascadia Code", style = "Italic" }
+bold_italic = { family = "Cascadia Code", style = "Bold Italic" }
+
+[general]
+import = [ "~/.config/alacritty/themes/themes/campbell.toml" ]
+
+

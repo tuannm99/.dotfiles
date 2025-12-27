@@ -19,27 +19,27 @@ plugins=(
 )
 
 export KUBECONFIG=~/.kubeconfig
-source $ZSH/oh-my-zsh.sh
 
 alias v=nvim
 alias vi=vim
 alias k=kubectl
 
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 export PATH=$HOME/.istioctl/bin:$PATH
 export PATH=$PWD/bin:$PATH
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-export PATH=$PATH:/usr/local/go/bin
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-. "$HOME/.cargo/env"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 
+source $ZSH/oh-my-zsh.sh
+[[ -s "/home/ubuntu/.gvm/scripts/gvm" ]] && source "/home/ubuntu/.gvm/scripts/gvm"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+. "$HOME/.cargo/env"
 
 # Load Angular CLI autocompletion.
-source <(ng completion script)
+# source <(ng completion script)
+
