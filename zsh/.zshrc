@@ -36,7 +36,7 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 source $ZSH/oh-my-zsh.sh
 [[ -s "/home/ubuntu/.gvm/scripts/gvm" ]] && source "/home/ubuntu/.gvm/scripts/gvm"
 source ~/.gvm/scripts/gvm
-command -v gvm
+# command -v gvm
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
